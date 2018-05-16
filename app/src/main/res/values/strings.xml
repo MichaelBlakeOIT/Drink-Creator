@@ -3,4 +3,47 @@
     <string name="drink_creator_title">New Drink</string>
     <string name="base_drink_options">Base Drink</string>
     <string name="flavor_options">Flavors</string>
+    <string-array name="base_drink_options_array">
+        <item>Rebel</item>
+        <item>Black Tea</item>
+        <item>Frost</item>
+        <item>Hot Chocolate</item>
+        <item>Green Tea</item>
+        <item>Soda</item>
+    </string-array>
+    <string-array name="flavor_options_array">
+        <item>Almond</item>
+        <item>Almond Roca</item>
+        <item>Banana</item>
+        <item>Blue Raspberry</item>
+        <item>Brown Sugar Cinnamon</item>
+        <item>Caramel</item>
+        <item>Cherry</item>
+        <item>Chocolate</item>
+        <item>Chocolate Macadamia Nut</item>
+        <item>Cinnamon</item>
+        <item>Coconut</item>
+        <item>Creme De Menthe</item>
+        <item>English Toffee</item>
+        <item>Hazelnut</item>
+        <item>Irish Cream</item>
+        <item>Kiwi</item>
+        <item>Lime</item>
+        <item>Orange</item>
+        <item>Passion Fruit</item>
+        <item>Peach</item>
+        <item>Peppermint</item>
+        <item>Pomegranate</item>
+        <item>Raspberry</item>
+        <item>Ruby Red Grapefruit</item>
+        <item>Salted Caramel</item>
+        <item>Strawberry</item>
+        <item>Vanilla</item>
+        <item>Watermelon</item>
+        <item>White Chocolate</item>
+    </string-array>
+    <string-array name="rebel_options_array">
+        <item>Iced</item>
+        <item>Blended</item>
+    </string-array>
 </resources>
