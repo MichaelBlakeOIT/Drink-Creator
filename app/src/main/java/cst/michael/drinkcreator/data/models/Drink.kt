@@ -1,6 +1,16 @@
 package cst.michael.drinkcreator.data.models
 
-class Drink(_baseDrink: String) {
-    val baseDrink = _baseDrink
+class Drink {
+    var baseDrink = ""
     val flavorsList = mutableListOf<String>()
+
+    override fun toString(): String {
+        var drinkString = "$baseDrink with "
+
+        for(f in flavorsList) {
+            drinkString += "$f, "
+        }
+
+        return drinkString
+    }
 }
