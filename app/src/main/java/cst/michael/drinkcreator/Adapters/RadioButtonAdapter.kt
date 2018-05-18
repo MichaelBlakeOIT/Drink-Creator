@@ -5,11 +5,15 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.TextView
 import cst.michael.drinkcreator.R
+import cst.michael.drinkcreator.data.models.Drink
 import kotlinx.android.synthetic.main.radiobutton_list_item.view.*
 
-class RadioButtonAdapter(val items : ArrayList<String>, val context : Context) : RecyclerView.Adapter<RadioButtonAdapter.ViewHolder>() {
+class RadioButtonAdapter(val items : ArrayList<String>, val context : Context, val drink: Drink) : RecyclerView.Adapter<RadioButtonAdapter.ViewHolder>() {
+    public var lastCheckedPosition = -1
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.radiobutton_list_item, parent, false))
     }
@@ -19,11 +23,13 @@ class RadioButtonAdapter(val items : ArrayList<String>, val context : Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.drinkText.text = items[position]
+        val baseDrinkArray = context.resources.getStringArray(R.array.base_drink_options_array)
+
+
 
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val drinkText: TextView = itemView.textviewForRadioButton
+    public class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
     }
 }

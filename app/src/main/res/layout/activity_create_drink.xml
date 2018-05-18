@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".CreateDrinkActivity">
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+    <LinearLayout
+        android:id="@+id/drinkCreatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".CreateDrinkActivity">
 
         <TextView
             android:layout_width="match_parent"
@@ -23,11 +27,27 @@
             android:textColor="#000000"
             android:textSize="14sp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/baseDrinkList"
+        <RadioGroup
+            android:id="@+id/drinkOptionsRadioGroup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"/>
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rebel"/>
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Freeze"/>
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Black Tea"/>
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Green Tea"/>
+        </RadioGroup>
 
         <TextView
             android:layout_width="match_parent"
@@ -37,10 +57,6 @@
             android:textColor="#000000"
             android:textSize="14sp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/flavorList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp"/>
 
     </LinearLayout>
+</ScrollView>
