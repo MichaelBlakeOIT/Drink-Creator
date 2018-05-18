@@ -17,30 +17,7 @@ class ListDrinksActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list_drinks)
         setSupportActionBar(toolbar)
 
-        val dbHelper = DrinkDbHelper(this)
 
-        val db = dbHelper.readableDatabase
-
-        val projection = arrayOf("Id", "DrinkName", "BaseDrink", "Flavors")
-
-        val cursor = db.query(
-                "Drinks",
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null
-        )
-
-        with(cursor) {
-            while (moveToNext()) {
-                val textView = TextView(applicationContext)
-                textView.text = cursor.getString(getColumnIndexOrThrow("DrinkName"))
-
-                drinkListView.addView(textView)
-            }
-        }
     }
 
 }
