@@ -46,4 +46,5 @@
         <item>Iced</item>
         <item>Blended</item>
     </string-array>
+    <string name="title_activity_list_drinks">ListDrinksActivity</string>
 </resources>

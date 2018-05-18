@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import cst.michael.drinkcreator.data.models.DrinkSQLObject
 
 private const val SQL_CREATE_ENTRIES =
-        "CREATE TABLE Drinks(BaseDrink, Flavors, Id PRIMARY KEY)"
+        "CREATE TABLE Drinks(DrinkName, BaseDrink, Flavors, Id PRIMARY KEY)"
 
 private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${DrinkSQLObject.DrinkSQL.TABLE_NAME}"
 
@@ -30,9 +30,10 @@ class DrinkDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         const val DATABASE_NAME = "Drinks.db"
     }
 
-    fun insertDrink(db: SQLiteDatabase, drinkName: String, flavors: String) {
+    fun insertDrink(db: SQLiteDatabase, drinkName: String, baseDrink: String, flavors: String) {
         val contentValues = ContentValues()
-        contentValues.put("BaseDrink", drinkName)
+        contentValues.put("DrinkName", drinkName)
+        contentValues.put("BaseDrink", baseDrink)
         contentValues.put("Flavors", flavors)
         db.insert("Drinks", null, contentValues)
     }
