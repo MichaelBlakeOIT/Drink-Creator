@@ -56,20 +56,26 @@ class CreateDrinkActivity : AppCompatActivity() {
                 .setPositiveButton("Done") { dialog, which ->
                     drink.name = drinkNameEditText.text.toString()
 
-                    val db = DrinkDbHelper(this).writableDatabase
-                    val contentValues = ContentValues()
-                    contentValues.put("DrinkName", drink.name)
-                    contentValues.put("BaseDrink", drink.baseDrink)
-                    contentValues.put("Flavors", drink.flavorsList.toString())
-                    db.insert("Drinks", null, contentValues)
+                    addDrinkToDB()
 
                     val intent = Intent(this, ListDrinksActivity::class.java)
                     startActivity(intent)
+
+                    finish()
                 }
                 .setNeutralButton("cancel") { dialog, which ->
                     dialog.cancel()
                 }
                 .create()
                 .show()
+    }
+
+    fun addDrinkToDB() {
+        val db = DrinkDbHelper(this).writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put("DrinkName", drink.name)
+        contentValues.put("BaseDrink", drink.baseDrink)
+        contentValues.put("Flavors", drink.flavorsList.toString())
+        db.insert("Drinks", null, contentValues)
     }
 }
