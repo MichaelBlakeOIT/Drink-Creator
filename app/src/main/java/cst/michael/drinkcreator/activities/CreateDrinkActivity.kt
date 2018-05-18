@@ -27,12 +27,6 @@ class CreateDrinkActivity : AppCompatActivity() {
         saveButton.text = "Save Drink"
         saveButton.setOnClickListener {
             getDrinkName()
-            val db = DrinkDbHelper(this).writableDatabase
-            val contentValues = ContentValues()
-            contentValues.put("DrinkName", drink.name)
-            contentValues.put("BaseDrink", drink.baseDrink)
-            contentValues.put("Flavors", drink.flavorsList.toString())
-            db.insert("Drinks", null, contentValues)
         }
 
         drinkOptionsRadioGroup.setOnCheckedChangeListener{ group, checkedId ->
@@ -61,6 +55,14 @@ class CreateDrinkActivity : AppCompatActivity() {
                 .setView(drinkNameEditText)
                 .setPositiveButton("Done") { dialog, which ->
                     drink.name = drinkNameEditText.text.toString()
+
+                    val db = DrinkDbHelper(this).writableDatabase
+                    val contentValues = ContentValues()
+                    contentValues.put("DrinkName", drink.name)
+                    contentValues.put("BaseDrink", drink.baseDrink)
+                    contentValues.put("Flavors", drink.flavorsList.toString())
+                    db.insert("Drinks", null, contentValues)
+
                     val intent = Intent(this, ListDrinksActivity::class.java)
                     startActivity(intent)
                 }

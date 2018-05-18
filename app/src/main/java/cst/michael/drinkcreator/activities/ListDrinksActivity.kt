@@ -38,9 +38,8 @@ class ListDrinksActivity : AppCompatActivity() {
                 val textView = TextView(applicationContext)
                 textView.text = cursor.getString(getColumnIndexOrThrow("DrinkName"))
 
-                drinkListView.addFooterView(textView)
+                drinkListView.addView(textView)
             }
-            drinkListView.invalidateViews()
         }
     }
 
