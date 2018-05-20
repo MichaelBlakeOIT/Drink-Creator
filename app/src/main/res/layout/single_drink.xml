@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:paddingStart="6dp"
+    android:paddingEnd="6dp"
+    android:paddingBottom="3dp"
+    android:paddingTop="3dp"
     android:gravity="center_horizontal">
     <TextView
         android:id="@+id/singleDrinkName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name of Drink"/>
+        android:textSize="36sp"
+        android:textColor="#181818"
+        tools:text="Name of Drink"/>
     <TextView
         android:id="@+id/SingleDrinkBase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rebel"/>
+        android:textSize="28sp"
+        android:textColor="#606060"
+        tools:text="Rebel"/>
     <TextView
         android:id="@+id/SingleDrinkFlavors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Flavor 1, flavor 2, flavor 3"/>
+        android:textSize="14sp"
+        android:textColor="#606060"
+        tools:text="Flavor 1, flavor 2, flavor 3"/>
 </LinearLayout>

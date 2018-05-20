@@ -29,6 +29,7 @@ class DrinkListAdapter(private val drinkList : List<Drink>, private val callback
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindItems(drink: Drink, position: Int, callback: (drinkId: Int) -> Unit) {
             itemView.drinkName.text = drink.name
+            itemView.drinkListBaseDrink.text = drink.baseDrink
 
             itemView.setOnClickListener {
                 callback(position)
