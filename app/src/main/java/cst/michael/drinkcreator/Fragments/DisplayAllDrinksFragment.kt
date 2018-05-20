@@ -66,8 +66,6 @@ class DisplayAllDrinksFragment : Fragment() {
 
         v?.findViewById<RecyclerView>(R.id.drinkListView)?.adapter = DrinkListAdapter(drinks,  {
 
-            Log.e("test123", activity?.listDrinksTitle?.text.toString())
-
             if(activity?.largeScreenLayout == null) {
                 val intent = Intent(activity, DrinkViewActivity::class.java)
                 intent.putExtra("drink", drinks[it] as Serializable)
