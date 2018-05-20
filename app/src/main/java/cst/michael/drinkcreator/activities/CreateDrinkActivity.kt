@@ -1,21 +1,17 @@
 package cst.michael.drinkcreator.activities
 
-import android.content.ContentValues
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
 import cst.michael.drinkcreator.R
 import cst.michael.drinkcreator.data.local.DrinkDbHelper
-import cst.michael.drinkcreator.data.models.Drink
 import kotlinx.android.synthetic.main.activity_create_drink.*
 
 class CreateDrinkActivity : AppCompatActivity() {
-    //private val drink = Drink()
     private var drinkName = ""
     private val drinkFlavors = mutableListOf<String>()
     private var baseDrink = ""
