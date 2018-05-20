@@ -14,7 +14,7 @@ class DrinkViewActivity : FragmentActivity() {
         //setContentView(R.layout.activity_drink_view)
 
         if(savedInstanceState == null) {
-            val details : Fragment = SingleDrinkFragment()
+            val details: Fragment = SingleDrinkFragment()
             details.arguments = intent.extras
             supportFragmentManager.beginTransaction().add(android.R.id.content, details).commit()
         }

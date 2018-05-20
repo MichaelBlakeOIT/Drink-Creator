@@ -25,17 +25,14 @@ class CreateDrinkActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_drink)
 
         val flavorArray = resources.getStringArray(R.array.flavor_options_array)
-        val saveButton = Button(this)
 
-        saveButton.text = "Save Drink"
-        saveButton.setOnClickListener {
+        saveDrink.setOnClickListener {
             getDrinkName()
         }
 
         drinkOptionsRadioGroup.setOnCheckedChangeListener{ group, checkedId ->
             val id = group.checkedRadioButtonId
             baseDrink = findViewById<RadioButton>(id).text.toString()
-            //drink.baseDrink = findViewById<RadioButton>(id).text.toString()
         }
 
         for(f in flavorArray) {
@@ -43,12 +40,10 @@ class CreateDrinkActivity : AppCompatActivity() {
             checkbox.text = f
             checkbox.setOnClickListener{
                 drinkFlavors.add(checkbox.text.toString())
-                //drink.flavorsList.add(checkbox.text.toString())
             }
+            //place flavor list right above the button in the layout.
             drinkCreatorLayout.addView(checkbox)
         }
-
-        drinkCreatorLayout.addView(saveButton)
     }
 
     fun getDrinkName() {
@@ -59,12 +54,10 @@ class CreateDrinkActivity : AppCompatActivity() {
                 .setView(drinkNameEditText)
                 .setPositiveButton("Done") { _, _ ->
                     val dbHelper = DrinkDbHelper(this)
-                    //drink.name = drinkNameEditText.text.toString()
+
                     drinkName = drinkNameEditText.text.toString()
 
                     dbHelper.insertDrink(dbHelper.writableDatabase, drinkName, baseDrink, drinkFlavors.toString())
-
-                    //addDrinkToDB()
 
                     val intent = Intent(this, ListDrinksActivity::class.java)
                     startActivity(intent)
@@ -76,14 +69,5 @@ class CreateDrinkActivity : AppCompatActivity() {
                 }
                 .create()
                 .show()
-    }
-
-    fun addDrinkToDB() {
-        val db = DrinkDbHelper(this).writableDatabase
-        val contentValues = ContentValues()
-        contentValues.put("DrinkName", drinkName)
-        contentValues.put("BaseDrink", baseDrink)
-        contentValues.put("Flavors", drinkFlavors.toString())
-        db.insert("Drinks", null, contentValues)
     }
 }

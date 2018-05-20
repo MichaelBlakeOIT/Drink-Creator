@@ -15,6 +15,7 @@
         android:paddingTop="3dp"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/listDrinksTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Drinks"
@@ -22,11 +23,27 @@
             android:textSize="36sp"
             android:textColor="#181818" />
 
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/drinkListFragment"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:id="@+id/largeScreenLayout"
             android:layout_width="match_parent"
-            android:name="cst.michael.drinkcreator.Fragments.DisplayAllDrinksFragment"/>
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/drinkListFragment"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:name="cst.michael.drinkcreator.Fragments.DisplayAllDrinksFragment"/>
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/singleDrinkFragment"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:name="cst.michael.drinkcreator.Fragments.SingleDrinkFragment"/>
+        </LinearLayout>
 
     </LinearLayout>
 
