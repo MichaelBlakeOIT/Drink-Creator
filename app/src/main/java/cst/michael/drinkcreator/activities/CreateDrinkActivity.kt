@@ -15,7 +15,10 @@ import cst.michael.drinkcreator.data.models.Drink
 import kotlinx.android.synthetic.main.activity_create_drink.*
 
 class CreateDrinkActivity : AppCompatActivity() {
-    private val drink = Drink()
+    //private val drink = Drink()
+    private var drinkName = ""
+    private val drinkFlavors = mutableListOf<String>()
+    private var baseDrink = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,14 +34,16 @@ class CreateDrinkActivity : AppCompatActivity() {
 
         drinkOptionsRadioGroup.setOnCheckedChangeListener{ group, checkedId ->
             val id = group.checkedRadioButtonId
-            drink.baseDrink = findViewById<RadioButton>(id).text.toString()
+            baseDrink = findViewById<RadioButton>(id).text.toString()
+            //drink.baseDrink = findViewById<RadioButton>(id).text.toString()
         }
 
         for(f in flavorArray) {
             val checkbox = CheckBox(this)
             checkbox.text = f
             checkbox.setOnClickListener{
-                drink.flavorsList.add(checkbox.text.toString())
+                drinkFlavors.add(checkbox.text.toString())
+                //drink.flavorsList.add(checkbox.text.toString())
             }
             drinkCreatorLayout.addView(checkbox)
         }
@@ -50,20 +55,23 @@ class CreateDrinkActivity : AppCompatActivity() {
         val dialogBuilder =  AlertDialog.Builder(this)
         val drinkNameEditText = EditText(this)
 
-
         dialogBuilder.setTitle("Drink Name")
                 .setView(drinkNameEditText)
-                .setPositiveButton("Done") { dialog, which ->
-                    drink.name = drinkNameEditText.text.toString()
+                .setPositiveButton("Done") { _, _ ->
+                    val dbHelper = DrinkDbHelper(this)
+                    //drink.name = drinkNameEditText.text.toString()
+                    drinkName = drinkNameEditText.text.toString()
 
-                    addDrinkToDB()
+                    dbHelper.insertDrink(dbHelper.writableDatabase, drinkName, baseDrink, drinkFlavors.toString())
+
+                    //addDrinkToDB()
 
                     val intent = Intent(this, ListDrinksActivity::class.java)
                     startActivity(intent)
 
                     finish()
                 }
-                .setNeutralButton("cancel") { dialog, which ->
+                .setNeutralButton("cancel") { dialog, _ ->
                     dialog.cancel()
                 }
                 .create()
@@ -73,9 +81,9 @@ class CreateDrinkActivity : AppCompatActivity() {
     fun addDrinkToDB() {
         val db = DrinkDbHelper(this).writableDatabase
         val contentValues = ContentValues()
-        contentValues.put("DrinkName", drink.name)
-        contentValues.put("BaseDrink", drink.baseDrink)
-        contentValues.put("Flavors", drink.flavorsList.toString())
+        contentValues.put("DrinkName", drinkName)
+        contentValues.put("BaseDrink", baseDrink)
+        contentValues.put("Flavors", drinkFlavors.toString())
         db.insert("Drinks", null, contentValues)
     }
 }

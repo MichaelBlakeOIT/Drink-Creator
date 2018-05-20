@@ -12,9 +12,9 @@ import kotlinx.android.synthetic.main.drink_row.view.*
  * Created by Michael on 5/18/2018.
  */
 
-class DrinkListAdapter(val drinkList : List<String>) : RecyclerView.Adapter<DrinkListAdapter.ViewHolder>() {
+class DrinkListAdapter(private val drinkList : List<Drink>, private val callback: (drinkId: Int) -> Unit) : RecyclerView.Adapter<DrinkListAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(drinkList[position])
+        holder.bindItems(drinkList[position], position, callback)
     }
 
     override fun getItemCount(): Int {
@@ -27,8 +27,12 @@ class DrinkListAdapter(val drinkList : List<String>) : RecyclerView.Adapter<Drin
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindItems(drink: String) {
-            itemView.drinkName.text = drink
+        fun bindItems(drink: Drink, position: Int, callback: (drinkId: Int) -> Unit) {
+            itemView.drinkName.text = drink.name
+
+            itemView.setOnClickListener {
+                callback(position)
+            }
         }
     }
 }

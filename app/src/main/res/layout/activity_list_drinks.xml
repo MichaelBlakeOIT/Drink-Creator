@@ -6,7 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".activities.ListDrinksActivity">
 
-    <include layout="@layout/content_list_drinks" />
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/drinkListFragment"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:name="cst.michael.drinkcreator.Fragments.DisplayAllDrinksFragment"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

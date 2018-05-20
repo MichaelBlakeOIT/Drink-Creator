@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import cst.michael.drinkcreator.data.models.DrinkSQLObject
 
 private const val SQL_CREATE_ENTRIES =
-        "CREATE TABLE Drinks(DrinkName, BaseDrink, Flavors, Id PRIMARY KEY)"
+        "CREATE TABLE Drinks(DrinkName, BaseDrink, Flavors, Id INTEGER PRIMARY KEY AUTOINCREMENT)"
 
 private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS ${DrinkSQLObject.DrinkSQL.TABLE_NAME}"
 

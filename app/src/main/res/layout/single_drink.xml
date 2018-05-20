@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</android.support.constraint.ConstraintLayout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+    <TextView
+        android:id="@+id/singleDrinkName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name of Drink"/>
+    <TextView
+        android:id="@+id/SingleDrinkBase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rebel"/>
+    <TextView
+        android:id="@+id/SingleDrinkFlavors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flavor 1, flavor 2, flavor 3"/>
+</LinearLayout>
