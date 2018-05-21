@@ -1,5 +1,7 @@
 package cst.michael.drinkcreator.Fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -15,11 +17,21 @@ class SingleDrinkFragment : Fragment() {
 
         if (arguments != null) {
             val drink = arguments?.get("drink") as Drink
+            val flavors = drink.flavorsList.toString().substring(1, drink.flavorsList.toString().length - 1).toLowerCase()
 
             v.singleDrinkName.text = drink.name
             v.SingleDrinkBase.text = drink.baseDrink
-            v.SingleDrinkFlavors.text = drink.flavorsList.toString().substring(1, drink.flavorsList.toString().length - 1)
+            v.SingleDrinkFlavors.text = flavors
+
+            v.shareDrink.setOnClickListener {
+                val tweet = "Try the ${drink.name}. It's a ${drink.baseDrink} with $flavors flavoring."
+                val url = "http://www.twitter.com/intent/tweet?text=$tweet"
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse(url)
+                startActivity(i)
+            }
         }
+
         return v
     }
 }

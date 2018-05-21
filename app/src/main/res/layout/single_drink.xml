@@ -29,4 +29,10 @@
         android:textSize="14sp"
         android:textColor="#606060"
         tools:text="Flavor 1, flavor 2, flavor 3"/>
+
+    <Button style="@style/Widget.AppCompat.Button.Colored"
+        android:id="@+id/shareDrink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share Drink" />
 </LinearLayout>
