@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.Toast
 import cst.michael.drinkcreator.R
 import cst.michael.drinkcreator.data.local.DrinkDbHelper
 import kotlinx.android.synthetic.main.activity_create_drink.*
@@ -26,16 +27,20 @@ class CreateDrinkActivity : AppCompatActivity() {
             getDrinkName()
         }
 
-        drinkOptionsRadioGroup.setOnCheckedChangeListener{ group, checkedId ->
+        drinkOptionsRadioGroup.setOnCheckedChangeListener { group, checkedId ->
             val id = group.checkedRadioButtonId
             baseDrink = findViewById<RadioButton>(id).text.toString()
         }
 
-        for(f in flavorArray) {
+        for (f in flavorArray) {
             val checkbox = CheckBox(this)
             checkbox.text = f
-            checkbox.setOnClickListener{
-                drinkFlavors.add(checkbox.text.toString())
+            checkbox.setOnClickListener {
+                if (checkbox.isChecked) {
+                    drinkFlavors.add(checkbox.text.toString())
+                } else {
+                    drinkFlavors.remove(checkbox.text.toString())
+                }
             }
             //place flavor list right above the button in the layout.
             drinkCreatorLayout.addView(checkbox)
@@ -43,27 +48,32 @@ class CreateDrinkActivity : AppCompatActivity() {
     }
 
     fun getDrinkName() {
-        val dialogBuilder =  AlertDialog.Builder(this)
+        val dialogBuilder = AlertDialog.Builder(this)
         val drinkNameEditText = EditText(this)
 
-        dialogBuilder.setTitle("Drink Name")
-                .setView(drinkNameEditText)
-                .setPositiveButton("Done") { _, _ ->
-                    val dbHelper = DrinkDbHelper(this)
+        when {
+            drinkOptionsRadioGroup.checkedRadioButtonId == -1 -> Toast.makeText(this, "Please select a base drink", Toast.LENGTH_SHORT).show()
+            drinkFlavors.isEmpty() -> Toast.makeText(this, "Please add at least one flavor", Toast.LENGTH_SHORT).show()
+            else -> dialogBuilder.setTitle("Drink Name")
+                    .setView(drinkNameEditText)
+                    .setPositiveButton("Done") { _, _ ->
+                        val dbHelper = DrinkDbHelper(this)
 
-                    drinkName = drinkNameEditText.text.toString()
+                        drinkName = drinkNameEditText.text.toString()
 
-                    dbHelper.insertDrink(dbHelper.writableDatabase, drinkName, baseDrink, drinkFlavors.toString())
+                        dbHelper.insertDrink(dbHelper.writableDatabase, drinkName, baseDrink, drinkFlavors.toString())
 
-                    val intent = Intent(this, ListDrinksActivity::class.java)
-                    startActivity(intent)
+                        val intent = Intent(this, ListDrinksActivity::class.java)
+                        startActivity(intent)
 
-                    finish()
-                }
-                .setNeutralButton("cancel") { dialog, _ ->
-                    dialog.cancel()
-                }
-                .create()
-                .show()
+                        finish()
+
+                    }
+                    .setNeutralButton("cancel") { dialog, _ ->
+                        dialog.cancel()
+                    }
+                    .create()
+                    .show()
+        }
     }
 }
