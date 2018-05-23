@@ -16,6 +16,7 @@ class CreateDrinkActivity : AppCompatActivity() {
     private var drinkName = ""
     private val drinkFlavors = mutableListOf<String>()
     private var baseDrink = ""
+    private var radioButtonId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +48,23 @@ class CreateDrinkActivity : AppCompatActivity() {
         }
     }
 
-    fun getDrinkName() {
+    /*override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putInt("radioButtonId", drinkOptionsRadioGroup.checkedRadioButtonId)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        radioButtonId = savedInstanceState?.getInt("radioButtonId")!!
+        //drinkOptionsRadioGroup.check(id!!)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        item?.isChecked = !item!!.isChecked
+        return true
+    }*/
+
+    private fun getDrinkName() {
         val dialogBuilder = AlertDialog.Builder(this)
         val drinkNameEditText = EditText(this)
 

@@ -74,7 +74,7 @@ class DisplayAllDrinksFragment : Fragment() {
                 val fragObj: Fragment = SingleDrinkFragment()
                 fragObj.arguments = bundle
 
-                fragmentManager?.beginTransaction()?.replace(R.id.singleDrinkFragment, fragObj)?.commit()
+                fragmentManager?.beginTransaction()?.replace(R.id.fragmentContainer, fragObj)?.commit()
             }
         })
 
