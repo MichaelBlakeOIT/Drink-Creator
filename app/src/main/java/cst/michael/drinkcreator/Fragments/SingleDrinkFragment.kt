@@ -19,7 +19,7 @@ class SingleDrinkFragment : Fragment() {
             val drink = arguments?.get("drink") as Drink
             val flavors = drink.flavorsList.toString().substring(1, drink.flavorsList.toString().length - 1).toLowerCase()
 
-            v.singleDrinkName.text = drink.name
+            activity!!.title = drink.name
             v.SingleDrinkBase.text = drink.baseDrink
             v.SingleDrinkFlavors.text = flavors
 

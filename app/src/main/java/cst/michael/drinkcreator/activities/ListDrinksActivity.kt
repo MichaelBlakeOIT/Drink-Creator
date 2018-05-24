@@ -26,6 +26,8 @@ class ListDrinksActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_drinks)
 
+        title = "Drinks"
+
         auth = FirebaseAuth.getInstance()
 
         setAddDrinkListener()

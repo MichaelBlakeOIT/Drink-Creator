@@ -9,13 +9,6 @@
     android:paddingBottom="3dp"
     android:paddingTop="3dp">
     <TextView
-        android:id="@+id/singleDrinkName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="36sp"
-        android:textColor="#181818"
-        tools:text="Name of Drink"/>
-    <TextView
         android:id="@+id/SingleDrinkBase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

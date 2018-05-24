@@ -16,11 +16,12 @@ class CreateDrinkActivity : AppCompatActivity() {
     private var drinkName = ""
     private val drinkFlavors = mutableListOf<String>()
     private var baseDrink = ""
-    private var radioButtonId = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_drink)
+
+        title = "Create a New Drink"
 
         val flavorArray = resources.getStringArray(R.array.flavor_options_array)
 

@@ -25,14 +25,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="@string/drink_creator_title"
-                android:textColor="#181818"
-                android:textSize="36sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
                 android:text="@string/base_drink_options"
                 android:textColor="#000000"
                 android:textSize="14sp" />
