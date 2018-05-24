@@ -9,7 +9,6 @@ class DrinkViewActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         if(savedInstanceState == null) {
             val details: Fragment = SingleDrinkFragment()
             details.arguments = intent.extras

@@ -28,7 +28,7 @@ class CreateDrinkActivity : AppCompatActivity() {
             getDrinkName()
         }
 
-        drinkOptionsRadioGroup.setOnCheckedChangeListener { group, checkedId ->
+        drinkOptionsRadioGroup.setOnCheckedChangeListener { group, _ ->
             val id = group.checkedRadioButtonId
             baseDrink = findViewById<RadioButton>(id).text.toString()
         }

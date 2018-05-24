@@ -72,7 +72,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <Button style="@style/Widget.AppCompat.Button.Colored"
+        <Button android:theme="@style/TealButton"
             android:id="@+id/saveDrink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
