@@ -8,7 +8,9 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
+import cst.michael.drinkcreator.Adapters.DrinkListAdapter
 import cst.michael.drinkcreator.R
+import cst.michael.drinkcreator.data.firebase.FirebaseDBHelper
 import cst.michael.drinkcreator.data.local.DrinkDbHelper
 import kotlinx.android.synthetic.main.activity_create_drink.*
 
@@ -79,12 +81,10 @@ class CreateDrinkActivity : AppCompatActivity() {
 
                         drinkName = drinkNameEditText.text.toString()
 
-                        dbHelper.insertDrink(dbHelper.writableDatabase, drinkName, baseDrink, drinkFlavors.toString())
-
-                        val intent = Intent(this, ListDrinksActivity::class.java)
-                        startActivity(intent)
-
-                        finish()
+                        if(drinkName != "") {
+                            addDrink()
+                            finishActivity()
+                        }
 
                     }
                     .setNeutralButton("cancel") { dialog, _ ->
@@ -93,5 +93,18 @@ class CreateDrinkActivity : AppCompatActivity() {
                     .create()
                     .show()
         }
+    }
+
+    private fun addDrink() {
+        //dbHelper.insertDrink(dbHelper.writableDatabase, drinkName, baseDrink, drinkFlavors.toString())
+        val helper = FirebaseDBHelper()
+        helper.addDrink(drinkName, drinkFlavors, baseDrink)
+    }
+
+    private fun finishActivity() {
+        val intent = Intent(this, ListDrinksActivity::class.java)
+        startActivity(intent)
+
+        finish()
     }
 }
