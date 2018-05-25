@@ -1,6 +1,7 @@
 package cst.michael.drinkcreator.Fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -15,6 +16,8 @@ import cst.michael.drinkcreator.R
 import cst.michael.drinkcreator.data.models.Drink
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
+import cst.michael.drinkcreator.activities.DrinkViewActivity
+import java.io.Serializable
 
 
 /**
@@ -62,7 +65,20 @@ class DisplayAllDrinksFragment : Fragment() {
             override fun onBindViewHolder(holder: DrinkListAdapter.FirebaseViewHolder, position: Int, model: Drink) {
                 holder.bindItems(model)
                 holder.setOnClickListener {
-                    Toast.makeText(activity, position, Toast.LENGTH_LONG).show()
+                    //if(activity?.larg == null) {
+                        val intent = Intent(activity, DrinkViewActivity::class.java)
+                        intent.putExtra("drink", model as Serializable)
+                        startActivity(intent)
+                    //}
+                    /*else {
+                        val bundle = Bundle()
+                        bundle.putSerializable("drink", drinks[it])
+
+                        val fragObj: Fragment = SingleDrinkFragment()
+                        fragObj.arguments = bundle
+
+                        fragmentManager?.beginTransaction()?.replace(R.id.singleDrinkFragment, fragObj)?.commit()
+                    }*/
                 }
             }
         }
