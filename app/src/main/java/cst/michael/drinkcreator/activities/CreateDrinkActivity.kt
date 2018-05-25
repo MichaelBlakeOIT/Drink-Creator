@@ -8,10 +8,8 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.Toast
-import cst.michael.drinkcreator.Adapters.DrinkListAdapter
 import cst.michael.drinkcreator.R
 import cst.michael.drinkcreator.data.firebase.FirebaseDBHelper
-import cst.michael.drinkcreator.data.local.DrinkDbHelper
 import kotlinx.android.synthetic.main.activity_create_drink.*
 
 class CreateDrinkActivity : AppCompatActivity() {
@@ -77,13 +75,11 @@ class CreateDrinkActivity : AppCompatActivity() {
             else -> dialogBuilder.setTitle("Drink Name")
                     .setView(drinkNameEditText)
                     .setPositiveButton("Done") { _, _ ->
-                        val dbHelper = DrinkDbHelper(this)
-
                         drinkName = drinkNameEditText.text.toString()
 
                         if(drinkName != "") {
                             addDrink()
-                            finishActivity()
+                            finish()
                         }
 
                     }
@@ -101,10 +97,10 @@ class CreateDrinkActivity : AppCompatActivity() {
         helper.addDrink(drinkName, drinkFlavors, baseDrink)
     }
 
-    private fun finishActivity() {
+    /*private fun finishActivity() {
         val intent = Intent(this, ListDrinksActivity::class.java)
         startActivity(intent)
 
         finish()
-    }
+    }*/
 }

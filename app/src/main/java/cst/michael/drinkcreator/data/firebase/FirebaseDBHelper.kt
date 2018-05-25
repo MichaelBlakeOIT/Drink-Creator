@@ -7,6 +7,7 @@ import cst.michael.drinkcreator.data.models.Drink
 class FirebaseDBHelper {
     fun getDBReference() : DatabaseReference {
         return FirebaseDatabase.getInstance().reference
+        //return FirebaseDatabase.getInstance().getReference("drink-creator")
     }
 
     fun addDrink(name: String, flavors: MutableList<String>, base: String) {

@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.google.firebase.database.DatabaseReference
 import cst.michael.drinkcreator.Adapters.DrinkListAdapter
 import cst.michael.drinkcreator.R
 import cst.michael.drinkcreator.data.models.Drink
@@ -23,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase
 
 class DisplayAllDrinksFragment : Fragment() {
     private lateinit var firebaseAdapter : FirebaseRecyclerAdapter<Drink, DrinkListAdapter.FirebaseViewHolder>
-    private var drinkReference : DatabaseReference? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.all_drinks, container, false)
@@ -69,5 +67,10 @@ class DisplayAllDrinksFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         firebaseAdapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        firebaseAdapter.stopListening()
     }
 }
