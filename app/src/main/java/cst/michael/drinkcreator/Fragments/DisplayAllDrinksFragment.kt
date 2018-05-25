@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import cst.michael.drinkcreator.Adapters.DrinkListAdapter
 import cst.michael.drinkcreator.R
@@ -60,6 +61,9 @@ class DisplayAllDrinksFragment : Fragment() {
 
             override fun onBindViewHolder(holder: DrinkListAdapter.FirebaseViewHolder, position: Int, model: Drink) {
                 holder.bindItems(model)
+                holder.setOnClickListener {
+                    Toast.makeText(activity, position, Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
