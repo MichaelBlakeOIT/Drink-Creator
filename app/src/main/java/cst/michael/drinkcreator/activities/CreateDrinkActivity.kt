@@ -11,6 +11,9 @@ import android.widget.Toast
 import cst.michael.drinkcreator.R
 import cst.michael.drinkcreator.data.firebase.FirebaseDBHelper
 import kotlinx.android.synthetic.main.activity_create_drink.*
+import android.widget.ArrayAdapter
+import cst.michael.drinkcreator.R.id.baseDrinkSpinner
+
 
 class CreateDrinkActivity : AppCompatActivity() {
     private var drinkName = ""
@@ -29,10 +32,11 @@ class CreateDrinkActivity : AppCompatActivity() {
             getDrinkName()
         }
 
-        drinkOptionsRadioGroup.setOnCheckedChangeListener { group, _ ->
-            val id = group.checkedRadioButtonId
-            baseDrink = findViewById<RadioButton>(id).text.toString()
-        }
+        val adapter = ArrayAdapter.createFromResource(this,
+                R.array.base_drink_options_array, android.R.layout.simple_spinner_item)
+        
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        baseDrinkSpinner.adapter = adapter
 
         for (f in flavorArray) {
             val checkbox = CheckBox(this)
@@ -70,7 +74,6 @@ class CreateDrinkActivity : AppCompatActivity() {
         val drinkNameEditText = EditText(this)
 
         when {
-            drinkOptionsRadioGroup.checkedRadioButtonId == -1 -> Toast.makeText(this, "Please select a base drink", Toast.LENGTH_SHORT).show()
             drinkFlavors.isEmpty() -> Toast.makeText(this, "Please add at least one flavor", Toast.LENGTH_SHORT).show()
             else -> dialogBuilder.setTitle("Drink Name")
                     .setView(drinkNameEditText)
@@ -94,13 +97,7 @@ class CreateDrinkActivity : AppCompatActivity() {
     private fun addDrink() {
         //dbHelper.insertDrink(dbHelper.writableDatabase, drinkName, baseDrink, drinkFlavors.toString())
         val helper = FirebaseDBHelper()
+        val baseDrink = baseDrinkSpinner.selectedItem.toString()
         helper.addDrink(drinkName, drinkFlavors, baseDrink)
     }
-
-    /*private fun finishActivity() {
-        val intent = Intent(this, ListDrinksActivity::class.java)
-        startActivity(intent)
-
-        finish()
-    }*/
 }

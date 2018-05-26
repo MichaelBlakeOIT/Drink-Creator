@@ -29,7 +29,7 @@
                 android:textColor="#000000"
                 android:textSize="14sp" />
 
-            <RadioGroup
+            <!--<RadioGroup
                 android:id="@+id/drinkOptionsRadioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -53,7 +53,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Green Tea" />
-            </RadioGroup>
+            </RadioGroup>-->
+
+            <Spinner
+                android:id="@+id/baseDrinkSpinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -64,7 +69,7 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <Button android:theme="@style/TealButton"
+        <Button
             android:id="@+id/saveDrink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

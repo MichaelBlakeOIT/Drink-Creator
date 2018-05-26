@@ -3,13 +3,13 @@ package cst.michael.drinkcreator.Fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import cst.michael.drinkcreator.Adapters.DrinkListAdapter
 import cst.michael.drinkcreator.R
@@ -30,17 +30,20 @@ class DisplayAllDrinksFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.all_drinks, container, false)
 
-        setUpFirebaseAdapter()
-
-        v?.findViewById<RecyclerView>(R.id.drinkListView)?.layoutManager = LinearLayoutManager(activity)
-        v?.findViewById<RecyclerView>(R.id.drinkListView)?.adapter = firebaseAdapter
-
         return v
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         //dbHelper = DrinkDbHelper(context)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpFirebaseAdapter()
+
+        view.findViewById<RecyclerView>(R.id.drinkListView)?.layoutManager = LinearLayoutManager(activity)
+        view.findViewById<RecyclerView>(R.id.drinkListView)?.adapter = firebaseAdapter
     }
 
     private fun setUpFirebaseAdapter() {

@@ -28,6 +28,10 @@ class ListDrinksActivity : AppCompatActivity() {
 
         title = "Drinks"
 
+        tabs?.addTab(tabs.newTab().setText("Newest"))
+        tabs?.addTab(tabs.newTab().setText("Top"))
+        tabs?.addTab(tabs.newTab().setText("Liked"))
+
         auth = FirebaseAuth.getInstance()
 
         setAddDrinkListener()
