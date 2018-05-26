@@ -21,25 +21,23 @@
             android:paddingTop="3dp"
             tools:context=".activities.CreateDrinkActivity">
 
-            <TextView
+            <TextView style="@style/SubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="@string/base_drink_options"
-                android:textColor="#000000"
-                android:textSize="14sp" />
+                android:textSize="14sp"/>
 
             <Spinner
                 android:id="@+id/baseDrinkSpinner"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
-            <TextView
+            <TextView style="@style/SubText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="@string/flavor_options"
-                android:textColor="#000000"
                 android:textSize="14sp" />
         </LinearLayout>
 

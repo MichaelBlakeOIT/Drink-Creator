@@ -16,4 +16,5 @@
     <color name="abc_primary_text_material_light">#deffffff</color>
     <color name="primary_color">#31a2ff</color>
     <color name="primary_material_dark_1">#0c61bc</color>
+    <color name="subtext_color">#7e8081</color>
 </resources>
