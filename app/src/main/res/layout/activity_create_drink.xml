@@ -29,32 +29,6 @@
                 android:textColor="#000000"
                 android:textSize="14sp" />
 
-            <!--<RadioGroup
-                android:id="@+id/drinkOptionsRadioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <RadioButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Rebel" />
-
-                <RadioButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Freeze" />
-
-                <RadioButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Black Tea" />
-
-                <RadioButton
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Green Tea" />
-            </RadioGroup>-->
-
             <Spinner
                 android:id="@+id/baseDrinkSpinner"
                 android:layout_width="fill_parent"

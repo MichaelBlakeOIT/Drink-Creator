@@ -97,7 +97,7 @@ class CreateDrinkActivity : AppCompatActivity() {
 
     private fun setupBaseDrinkMenu() {
         val adapter = ArrayAdapter.createFromResource(this,
-                R.array.base_drink_options_array, android.R.layout.simple_spinner_item)
+                R.array.base_drink_options_array, R.layout.spinner_layout)
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         baseDrinkSpinner.adapter = adapter
