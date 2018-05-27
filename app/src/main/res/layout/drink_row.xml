@@ -3,23 +3,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="6dp"
-    android:paddingEnd="6dp"
+    android:orientation="vertical"
     android:paddingBottom="3dp"
-    android:paddingTop="3dp"
-    android:orientation="vertical">
-    <TextView
-        android:id="@+id/drinkName"
+    android:paddingEnd="6dp"
+    android:paddingStart="6dp"
+    android:paddingTop="3dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#181818"
-        android:textSize="20sp"
-        tools:text="Test Name"/>
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/drinkName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#181818"
+                android:textSize="20sp"
+                tools:text="Test Name" />
+
+            <TextView
+                android:id="@+id/drinkListBaseDrink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#606060"
+                android:textSize="14sp"
+                tools:text="Test Base Drink" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitEnd"
+            android:src="@drawable/ic_favorite_border_black_24dp" />
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/drinkListBaseDrink"
+        android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#606060"
-        android:textSize="14sp"
-        tools:text="Test Base Drink"/>
+        android:text="test23"
+        android:visibility="gone" />
+
 </LinearLayout>

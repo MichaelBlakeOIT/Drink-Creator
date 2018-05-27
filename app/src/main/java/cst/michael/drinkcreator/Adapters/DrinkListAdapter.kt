@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import cst.michael.drinkcreator.R
 import cst.michael.drinkcreator.data.models.Drink
 import kotlinx.android.synthetic.main.drink_row.view.*
@@ -39,6 +40,7 @@ class DrinkListAdapter(private val drinkList : List<Drink>, private val callback
 
     class FirebaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var clickListener = {}
+        val description = itemView.description
 
         fun bindItems(drink: Drink) {
             itemView.drinkName.text = drink.name
@@ -46,6 +48,7 @@ class DrinkListAdapter(private val drinkList : List<Drink>, private val callback
             itemView.setOnClickListener {
                 clickListener()
             }
+            description.text = drink.flavorsList.toString().substring(1, drink.flavorsList.toString().length - 1).toLowerCase()
         }
 
         fun setOnClickListener(callback: () -> Unit) {

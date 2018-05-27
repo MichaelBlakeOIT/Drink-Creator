@@ -16,8 +16,10 @@ import cst.michael.drinkcreator.R
 import cst.michael.drinkcreator.data.models.Drink
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
-import cst.michael.drinkcreator.activities.DrinkViewActivity
-import java.io.Serializable
+import android.support.v7.widget.DividerItemDecoration
+import kotlinx.android.synthetic.main.all_drinks.*
+import kotlinx.android.synthetic.main.all_drinks.view.*
+import kotlinx.android.synthetic.main.drink_row.*
 
 
 /**
@@ -40,13 +42,15 @@ class DisplayAllDrinksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpFirebaseAdapter()
+        setUpFirebaseAdapter(view)
+
+        view.findViewById<RecyclerView>(R.id.drinkListView)?.drinkListView?.addItemDecoration(DividerItemDecoration(drinkListView.context, DividerItemDecoration.VERTICAL))
 
         view.findViewById<RecyclerView>(R.id.drinkListView)?.layoutManager = LinearLayoutManager(activity)
         view.findViewById<RecyclerView>(R.id.drinkListView)?.adapter = firebaseAdapter
     }
 
-    private fun setUpFirebaseAdapter() {
+    private fun setUpFirebaseAdapter(view: View) {
         val query = FirebaseDatabase.getInstance()
                 .reference
                 .child("drinks")
@@ -68,20 +72,16 @@ class DisplayAllDrinksFragment : Fragment() {
             override fun onBindViewHolder(holder: DrinkListAdapter.FirebaseViewHolder, position: Int, model: Drink) {
                 holder.bindItems(model)
                 holder.setOnClickListener {
-                    //if(activity?.larg == null) {
-                        val intent = Intent(activity, DrinkViewActivity::class.java)
-                        intent.putExtra("drink", model as Serializable)
-                        startActivity(intent)
-                    //}
-                    /*else {
-                        val bundle = Bundle()
-                        bundle.putSerializable("drink", drinks[it])
+                        //val intent = Intent(activity, DrinkViewActivity::class.java)
+                        //intent.putExtra("drink", model as Serializable)
+                        //startActivity(intent)
+                    val shouldExpand = holder.description.visibility == View.GONE
 
-                        val fragObj: Fragment = SingleDrinkFragment()
-                        fragObj.arguments = bundle
-
-                        fragmentManager?.beginTransaction()?.replace(R.id.singleDrinkFragment, fragObj)?.commit()
-                    }*/
+                    if (shouldExpand) {
+                        holder.description.visibility = View.VISIBLE
+                    } else {
+                        holder.description.visibility = View.GONE
+                    }
                 }
             }
         }

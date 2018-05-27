@@ -53,7 +53,7 @@ class CreateDrinkActivity : AppCompatActivity() {
                     .setPositiveButton("Done") { _, _ ->
                         drinkName = drinkNameEditText.text.toString()
 
-                        if(drinkName != "") {
+                        if(checkDrinkName(drinkName)) {
                             addDrink()
                             finish()
                         }
@@ -101,5 +101,16 @@ class CreateDrinkActivity : AppCompatActivity() {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         baseDrinkSpinner.adapter = adapter
+    }
+
+    private fun checkDrinkName(drinkName : String) : Boolean {
+        if (drinkName == "") {
+            Toast.makeText(this, "Please enter a drink name", Toast.LENGTH_SHORT).show()
+            return false
+        } else if (drinkName.length > 25) {
+            Toast.makeText(this, "Please enter a shorter drink name", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        return true
     }
 }
