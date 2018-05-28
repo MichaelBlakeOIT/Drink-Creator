@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
+import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -42,12 +43,16 @@ class DisplayAllDrinksFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.drinkListView)
+
         setUpFirebaseAdapter(view)
 
-        view.findViewById<RecyclerView>(R.id.drinkListView)?.drinkListView?.addItemDecoration(DividerItemDecoration(drinkListView.context, DividerItemDecoration.VERTICAL))
+        recyclerView.addItemDecoration(DividerItemDecoration(drinkListView.context, DividerItemDecoration.VERTICAL))
 
-        view.findViewById<RecyclerView>(R.id.drinkListView)?.layoutManager = LinearLayoutManager(activity)
-        view.findViewById<RecyclerView>(R.id.drinkListView)?.adapter = firebaseAdapter
+        //recyclerView.itemAnimator(DefaultItemAnimator())
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = firebaseAdapter
     }
 
     private fun setUpFirebaseAdapter(view: View) {

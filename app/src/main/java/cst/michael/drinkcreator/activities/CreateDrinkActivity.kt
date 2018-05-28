@@ -19,6 +19,10 @@ class CreateDrinkActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_drink)
 
+        if(savedInstanceState != null) {
+            baseDrinkSpinner.setSelection(savedInstanceState.getInt("baseDrinkId"))
+        }
+
         title = "Create a New Drink"
 
         setupBaseDrinkMenu()
@@ -26,21 +30,10 @@ class CreateDrinkActivity : AppCompatActivity() {
         setupListeners()
     }
 
-    /*override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        outState?.putInt("radioButtonId", drinkOptionsRadioGroup.checkedRadioButtonId)
+        outState?.putInt("baseDrinkId", baseDrinkSpinner.selectedItemPosition)
     }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        super.onRestoreInstanceState(savedInstanceState)
-        radioButtonId = savedInstanceState?.getInt("radioButtonId")!!
-        //drinkOptionsRadioGroup.check(id!!)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        item?.isChecked = !item!!.isChecked
-        return true
-    }*/
 
     private fun getDrinkName() {
         val dialogBuilder = AlertDialog.Builder(this)
