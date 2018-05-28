@@ -17,4 +17,14 @@ class FirebaseDBHelper {
         val drink = Drink(name, base, flavors, key!!, userId!!)
         getDBReference().child("drinks").child(key).setValue(drink)
     }
+
+    fun addLike(drinkKey: String) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        getDBReference().child("likes").child(userId!!).child(drinkKey).setValue(true)
+    }
+
+    fun removeLike(drinkKey: String) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        getDBReference().child("likes").child(userId!!).child(drinkKey).removeValue()
+    }
 }
