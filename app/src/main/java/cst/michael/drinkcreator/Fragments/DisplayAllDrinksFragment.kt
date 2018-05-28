@@ -1,11 +1,8 @@
 package cst.michael.drinkcreator.Fragments
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -20,8 +17,6 @@ import com.google.firebase.database.FirebaseDatabase
 import android.support.v7.widget.DividerItemDecoration
 import cst.michael.drinkcreator.data.firebase.FirebaseDBHelper
 import kotlinx.android.synthetic.main.all_drinks.*
-import kotlinx.android.synthetic.main.all_drinks.view.*
-import kotlinx.android.synthetic.main.drink_row.*
 
 
 /**
@@ -47,7 +42,7 @@ class DisplayAllDrinksFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.drinkListView)
 
-        setUpFirebaseAdapter(view)
+        setUpFirebaseAdapter()
 
         recyclerView.addItemDecoration(DividerItemDecoration(drinkListView.context, DividerItemDecoration.VERTICAL))
 
@@ -56,7 +51,7 @@ class DisplayAllDrinksFragment : Fragment() {
         recyclerView.adapter = firebaseAdapter
     }
 
-    private fun setUpFirebaseAdapter(view: View) {
+    private fun setUpFirebaseAdapter() {
         val query = FirebaseDatabase.getInstance()
                 .reference
                 .child("drinks")
