@@ -5,7 +5,8 @@ import java.io.Serializable
 class Drink constructor(val name: String = "",
                         val baseDrink: String = "",
                         val flavorsList: MutableList<String> = mutableListOf(),
-                        val key: String = "") : Serializable {
+                        val key: String = "",
+                        val userId: String = "") : Serializable {
     fun getDrinkDescription(): String {
         var drinkString = "$this.baseDrink with "
 
