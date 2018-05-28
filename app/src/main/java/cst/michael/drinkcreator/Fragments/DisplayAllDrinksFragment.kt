@@ -18,6 +18,7 @@ import cst.michael.drinkcreator.data.models.Drink
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
 import android.support.v7.widget.DividerItemDecoration
+import cst.michael.drinkcreator.data.firebase.FirebaseDBHelper
 import kotlinx.android.synthetic.main.all_drinks.*
 import kotlinx.android.synthetic.main.all_drinks.view.*
 import kotlinx.android.synthetic.main.drink_row.*
@@ -77,9 +78,6 @@ class DisplayAllDrinksFragment : Fragment() {
             override fun onBindViewHolder(holder: DrinkListAdapter.FirebaseViewHolder, position: Int, model: Drink) {
                 holder.bindItems(model)
                 holder.setOnClickListener {
-                        //val intent = Intent(activity, DrinkViewActivity::class.java)
-                        //intent.putExtra("drink", model as Serializable)
-                        //startActivity(intent)
                     val shouldExpand = holder.description.visibility == View.GONE
 
                     if (shouldExpand) {
@@ -87,6 +85,11 @@ class DisplayAllDrinksFragment : Fragment() {
                     } else {
                         holder.description.visibility = View.GONE
                     }
+                }
+                holder.setOnLikeListener {
+                    val dbHelper = FirebaseDBHelper()
+
+                    dbHelper.addLike(model.key)
                 }
             }
         }

@@ -40,19 +40,27 @@ class DrinkListAdapter(private val drinkList : List<Drink>, private val callback
 
     class FirebaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var clickListener = {}
+        private var likeListener = {}
         val description = itemView.description
 
         fun bindItems(drink: Drink) {
             itemView.drinkName.text = drink.name
             itemView.drinkListBaseDrink.text = drink.baseDrink
-            itemView.setOnClickListener {
+            itemView.leftLayout.setOnClickListener {
                 clickListener()
+            }
+            itemView.heart.setOnClickListener {
+                likeListener()
             }
             description.text = drink.flavorsList.toString().substring(1, drink.flavorsList.toString().length - 1).toLowerCase()
         }
 
         fun setOnClickListener(callback: () -> Unit) {
             clickListener = callback
+        }
+
+        fun setOnLikeListener(callback: () -> Unit) {
+            likeListener = callback
         }
     }
 }
