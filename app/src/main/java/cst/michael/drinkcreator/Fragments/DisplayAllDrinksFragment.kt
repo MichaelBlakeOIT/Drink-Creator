@@ -15,6 +15,12 @@ import cst.michael.drinkcreator.data.models.Drink
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.FirebaseDatabase
 import android.support.v7.widget.DividerItemDecoration
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import cst.michael.drinkcreator.activities.ListDrinksActivity
 import cst.michael.drinkcreator.data.firebase.FirebaseDBHelper
 import kotlinx.android.synthetic.main.all_drinks.*
 
@@ -25,9 +31,18 @@ import kotlinx.android.synthetic.main.all_drinks.*
 
 class DisplayAllDrinksFragment : Fragment() {
     private lateinit var firebaseAdapter : FirebaseRecyclerAdapter<Drink, DrinkListAdapter.FirebaseViewHolder>
+    private val dbHelper = FirebaseDBHelper()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater.inflate(R.layout.all_drinks, container, false)
+
+        (activity as ListDrinksActivity).fragmentListener = {
+            firebaseAdapter.notifyDataSetChanged()
+        }
+
+        //val likes = dbHelper.getLikedDrinks()
+
+        //Toast.makeText(activity, likes.size.toString(), Toast.LENGTH_LONG).show()
 
         return v
     }
@@ -52,16 +67,18 @@ class DisplayAllDrinksFragment : Fragment() {
     }
 
     private fun setUpFirebaseAdapter() {
-        val query = FirebaseDatabase.getInstance()
-                .reference
+        val ref = FirebaseDatabase.getInstance().reference
+
+        val drinksQuery = ref
                 .child("drinks")
                 .limitToLast(20)
 
-        val options = FirebaseRecyclerOptions.Builder<Drink>()
-                .setQuery(query, Drink::class.java)
+        val drinksOptions = FirebaseRecyclerOptions.Builder<Drink>()
+                .setQuery(drinksQuery, Drink::class.java)
                 .build()
 
-        firebaseAdapter = object : FirebaseRecyclerAdapter<Drink, DrinkListAdapter.FirebaseViewHolder>(options) {
+
+        firebaseAdapter = object : FirebaseRecyclerAdapter<Drink, DrinkListAdapter.FirebaseViewHolder>(drinksOptions) {
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrinkListAdapter.FirebaseViewHolder {
                 val view = LayoutInflater.from(parent.context)
@@ -75,6 +92,8 @@ class DisplayAllDrinksFragment : Fragment() {
                 holder.setOnClickListener {
                     val shouldExpand = holder.description.visibility == View.GONE
 
+                    //getRef(position).key
+
                     if (shouldExpand) {
                         holder.description.visibility = View.VISIBLE
                     } else {
@@ -82,9 +101,8 @@ class DisplayAllDrinksFragment : Fragment() {
                     }
                 }
                 holder.setOnLikeListener {
-                    val dbHelper = FirebaseDBHelper()
-
-                    dbHelper.addLike(model.key)
+                    val key = getRef(position).key
+                    dbHelper.addLike(key!!)
                 }
             }
         }
@@ -98,5 +116,26 @@ class DisplayAllDrinksFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         firebaseAdapter.stopListening()
+    }
+
+    fun getLikedDrinks() : MutableList<String> {
+        val currentUser = FirebaseAuth.getInstance().currentUser?.uid
+        val likes = dbHelper.getDBReference().child("likes").child(currentUser!!)
+        val likeArray = mutableListOf<String>()
+
+        /*likes.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val key = dataSnapshot.key
+                likeArray.add(key!!)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("The read failed: " + databaseError.code)
+            }
+        })*/
+
+
+
+        return likeArray
     }
 }

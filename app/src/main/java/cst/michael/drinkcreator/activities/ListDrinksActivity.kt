@@ -21,6 +21,7 @@ private val RC_SIGN_IN = 123
 
 class ListDrinksActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
+    var fragmentListener = {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,7 @@ class ListDrinksActivity : AppCompatActivity() {
         tabs?.addTab(tabs.newTab().setText("Newest"))
         tabs?.addTab(tabs.newTab().setText("Top"))
         tabs?.addTab(tabs.newTab().setText("Liked"))
+        tabs?.addTab(tabs.newTab().setText("My Drinks"))
 
         auth = FirebaseAuth.getInstance()
 
@@ -83,6 +85,7 @@ class ListDrinksActivity : AppCompatActivity() {
                 .addOnCompleteListener {
                     setAddDrinkListener()
                 }
+
     }
 
     private fun setAddDrinkListener() {

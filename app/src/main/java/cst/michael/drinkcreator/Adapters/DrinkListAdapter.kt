@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import com.google.firebase.auth.FirebaseAuth
 import cst.michael.drinkcreator.R
 import cst.michael.drinkcreator.data.models.Drink
 import kotlinx.android.synthetic.main.drink_row.view.*
@@ -42,6 +42,7 @@ class DrinkListAdapter(private val drinkList : List<Drink>, private val callback
         private var clickListener = {}
         private var likeListener = {}
         val description = itemView.description
+        private val userId = FirebaseAuth.getInstance().currentUser?.uid
 
         fun bindItems(drink: Drink) {
             itemView.drinkName.text = drink.name
@@ -49,10 +50,17 @@ class DrinkListAdapter(private val drinkList : List<Drink>, private val callback
             itemView.leftLayout.setOnClickListener {
                 clickListener()
             }
-            itemView.heart.setOnClickListener {
-                likeListener()
+            if(userId != null) {
+                itemView.heart.visibility = View.VISIBLE
+                itemView.heart.setOnClickListener {
+                    likeListener()
+                }
+                description.text = drink.flavorsList.toString().substring(1, drink.flavorsList.toString().length - 1).toLowerCase()
+
+                if (drink.likes.containsKey(userId)) {
+                    itemView.heart.setImageResource(R.drawable.ic_favorite_black_24dp)
+                }
             }
-            description.text = drink.flavorsList.toString().substring(1, drink.flavorsList.toString().length - 1).toLowerCase()
         }
 
         fun setOnClickListener(callback: () -> Unit) {
